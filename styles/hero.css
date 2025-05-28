@@ -1,0 +1,464 @@
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    perspective: 1000px;
+    /* Фоновое изображение для Hero */
+    background: url('/images/museum.jpg') no-repeat center center/cover;
+    background-attachment: fixed; /* Эффект параллакса */
+    filter: brightness(0.6) contrast(1.1) saturate(0.9); /* Слегка затемняем и стилизуем */
+}
+
+/* Фон с изображением, чтобы можно было анимировать слои поверх */
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Используем отдельный слой для фона, чтобы не применять фильтр к основному контейнеру */
+    background: inherit; /* Наследует background от .hero-section */
+    background-attachment: fixed;
+    filter: brightness(1); /* Убираем фильтр, он уже на .hero-section */
+    z-index: 0;
+}
+
+/* Наложение для затемнения и глубокого цвета */
+.hero-overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Анимированные лучи света */
+.hero-ray-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 70%); /* Мягкий свет из центра */
+    mix-blend-mode: screen; /* Смешивание с фоном */
+    opacity: 0.8;
+    z-index: 2;
+    animation: pulse-light 10s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes pulse-light {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Анимированные частицы (имитация пыли, магии и т.д.) */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 3;
+    pointer-events: none;
+    /* Создаем множество "частиц" с помощью box-shadow */
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        100vw 100vh 0 1px rgba(255, 255, 255, 0.1),
+        0 50vh 0 1px rgba(255, 255, 255, 0.1),
+        50vw 0 0 1px rgba(255, 255, 255, 0.1),
+        25vw 25vh 0 1px rgba(255, 255, 255, 0.1),
+        75vw 75vh 0 1px rgba(255, 255, 255, 0.1),
+        10vw 90vh 0 1px rgba(255, 255, 255, 0.1),
+        90vw 10vh 0 1px rgba(255, 255, 255, 0.1);
+    animation: move-particles 30s linear infinite; /* Медленное движение */
+}
+
+@keyframes move-particles {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 100px); } /* Небольшое смещение для эффекта движения */
+}
+
+
+.hero-content {
+    position: relative;
+    z-index: 4; /* Выше всех фоновых элементов */
+    max-width: 900px;
+    width: 90%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+}
+
+.portal-frame {
+    background-color: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    position: relative;
+    /* Сложная тень для эффекта "портала" */
+    box-shadow: 
+        inset 0 0 10px rgba(255, 215, 0, 0.4), /* Внутреннее золотое свечение */
+        0 0 0 4px var(--color-secondary), /* Тонкая золотая рамка */
+        0 0 0 8px rgba(139, 69, 19, 0.8), /* Широкая коричневая рамка */
+        0 20px 40px rgba(0, 0, 0, 0.7); /* Глубокая общая тень */
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.1); /* Очень тонкий внешний контур */
+    transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
+    animation: subtle-glow 4s infinite alternate ease-in-out; /* Анимация свечения портала */
+}
+
+@keyframes subtle-glow {
+    0% { box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.4), 0 0 0 4px var(--color-secondary), 0 0 0 8px rgba(139, 69, 19, 0.8), 0 20px 40px rgba(0, 0, 0, 0.7); }
+    100% { box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.6), 0 0 0 5px var(--color-secondary), 0 0 0 9px rgba(139, 69, 19, 0.9), 0 25px 45px rgba(0, 0, 0, 0.8); }
+}
+
+/* Дополнительный эффект свечения/дымки внутри портала */
+.portal-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: fade-portal 6s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes fade-portal {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+
+.portal-frame:hover {
+    transform: scale(1.01);
+    box-shadow: 
+        inset 0 0 20px rgba(255, 215, 0, 0.7),
+        0 0 0 6px var(--color-secondary),
+        0 0 0 10px rgba(139, 69, 19, 1),
+        0 25px 50px rgba(0, 0, 0, 0.9);
+}
+
+.hero-subtitle {
+    font-family: var(--font-accent); /* Great Vibes */
+    font-size: 2.8rem;
+    color: var(--color-secondary);
+    margin-bottom: 15px;
+    line-height: 1;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+    position: relative;
+    display: inline-block;
+}
+
+.main-title {
+    font-family: var(--font-heading);
+    font-size: 5.5rem;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.5),
+        3px 3px 10px rgba(0, 0, 0, 0.9);
+    position: relative;
+    letter-spacing: 2px;
+}
+
+.main-title .highlight-text-gold { /* Выделенное слово */
+    color: var(--color-secondary);
+    transition: color 0.5s ease;
+    text-shadow: 0 0 15px var(--color-secondary), 0 0 25px var(--color-secondary);
+    animation: pulsate-text 3s infinite alternate ease-in-out; /* Мерцание текста */
+}
+
+@keyframes pulsate-text {
+    0% { text-shadow: 0 0 15px var(--color-secondary), 0 0 25px var(--color-secondary); }
+    100% { text-shadow: 0 0 25px var(--color-secondary), 0 0 40px var(--color-secondary); }
+}
+
+
+.hero-description {
+    font-size: 1.5rem;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.hero-btn {
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    background-color: var(--color-primary);
+    color: white;
+    border: 2px solid var(--color-secondary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+}
+
+.hero-btn:hover::before {
+    left: 100%;
+}
+
+.hero-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    transform: translateY(-7px) scale(1.07);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9);
+}
+
+/* Стрелка "Прокрутить вниз" - теперь анимированный "Артефакт Путешествия" */
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    z-index: 5; /* Убедимся, что он выше всех эффектов */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.scroll-down a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-secondary); /* Золотой цвет */
+    transition: color 0.3s ease;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+.scroll-down a:hover {
+    color: var(--color-primary); /* Темный коричневый при наведении */
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Стили для "Артефакта Путешествия" */
+.artifact-scroll-indicator {
+    width: 60px; /* Ширина артефакта */
+    height: 80px; /* Высота артефакта */
+    background: linear-gradient(to bottom, #d4a75e, #c08c4e); /* Золотистый градиент для тела */
+    border-radius: 10px; /* Слегка скругленные края */
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3), /* Основная тень */
+        inset 0 0 10px rgba(255, 255, 255, 0.2), /* Внутреннее свечение */
+        inset 0 0 0 2px var(--color-primary); /* Тонкая коричневая рамка */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    animation: artifact-drop 3s infinite ease-in-out; /* Основная анимация */
+}
+
+/* Верхушка и донышко артефакта */
+.artifact-top-cap,
+.artifact-bottom-cap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 15px; /* Высота колпачка */
+    background-color: var(--color-primary); /* Темно-коричневый */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.artifact-top-cap {
+    top: 0;
+    transform: rotateX(20deg); /* Наклон для 3D эффекта */
+    transform-origin: top center;
+}
+.artifact-bottom-cap {
+    bottom: 0;
+    transform: rotateX(-20deg); /* Наклон в другую сторону */
+    transform-origin: bottom center;
+}
+
+/* Тело артефакта с иконкой */
+.artifact-body {
+    position: absolute;
+    top: 10px; /* Отступ от верхнего колпачка */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 20px); /* Высота тела */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.artifact-icon {
+    font-size: 2.5rem; /* Крупная иконка свитка */
+    color: white; /* Белая иконка на золотистом фоне */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    animation: artifact-icon-glow 2.5s infinite alternate ease-in-out; /* Анимация свечения иконки */
+}
+
+@keyframes artifact-icon-glow {
+    0% { opacity: 0.8; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 5px rgba(255, 255, 255, 0.3); }
+    100% { opacity: 1; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7), 0 0 10px rgba(255, 255, 255, 0.5); }
+}
+
+
+/* Анимация "падения" артефакта */
+@keyframes artifact-drop {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg);
+        box-shadow: 
+            0 5px 15px rgba(0, 0, 0, 0.3), 
+            inset 0 0 10px rgba(255, 255, 255, 0.2), 
+            inset 0 0 0 2px var(--color-primary);
+    }
+    25% {
+        transform: translateY(-15px) rotateX(5deg); /* Поднимается и слегка наклоняется */
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.4), 
+            inset 0 0 15px rgba(255, 255, 255, 0.4), 
+            inset 0 0 0 2px var(--color-primary);
+    }
+    50% {
+        transform: translateY(0) rotateX(0deg);
+        box-shadow: 
+            0 5px 15px rgba(0, 0, 0, 0.3), 
+            inset 0 0 10px rgba(255, 255, 255, 0.2), 
+            inset 0 0 0 2px var(--color-primary);
+    }
+    75% {
+        transform: translateY(15px) rotateX(-5deg); /* Опускается ниже исходной точки и наклоняется */
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.4), 
+            inset 0 0 15px rgba(255, 255, 255, 0.4), 
+            inset 0 0 0 2px var(--color-primary);
+    }
+}
+
+/* Текст-подсказка "Прокрутить" */
+.scroll-hint-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-secondary); /* Золотой цвет */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    animation: text-fade-in-out 3s infinite ease-in-out; /* Анимация появления/исчезновения текста */
+}
+
+@keyframes text-fade-in-out {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+
+/* Адаптивные настройки для нового элемента */
+@media (max-width: 768px) {
+    .scroll-down {
+        bottom: 30px;
+    }
+    .artifact-scroll-indicator {
+        width: 50px;
+        height: 70px;
+    }
+    .artifact-icon {
+        font-size: 2rem;
+    }
+    .scroll-hint-text {
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 480px) {
+    .scroll-down {
+        bottom: 20px;
+    }
+    .artifact-scroll-indicator {
+        width: 45px;
+        height: 65px;
+    }
+    .artifact-icon {
+        font-size: 1.8rem;
+    }
+    .scroll-hint-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Адаптации для темного режима */
+body.dark-mode .artifact-scroll-indicator {
+    background: linear-gradient(to bottom, var(--color-dark-primary), var(--color-dark-secondary));
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.5), 
+        inset 0 0 10px rgba(255, 255, 255, 0.1), 
+        inset 0 0 0 2px var(--color-dark-primary);
+}
+
+body.dark-mode .artifact-top-cap,
+body.dark-mode .artifact-bottom-cap {
+    background-color: var(--color-dark-secondary); /* Использовать темный акцент */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .artifact-icon {
+    color: var(--color-dark-background); /* Темная иконка на золотистом фоне */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .scroll-hint-text {
+    color: var(--color-dark-primary);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes artifact-drop {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg);
+        box-shadow: 
+            0 5px 15px rgba(0, 0, 0, 0.5), 
+            inset 0 0 10px rgba(255, 255, 255, 0.1), 
+            inset 0 0 0 2px var(--color-dark-primary);
+    }
+    25% {
+        transform: translateY(-15px) rotateX(5deg);
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.7), 
+            inset 0 0 15px rgba(255, 255, 255, 0.2), 
+            inset 0 0 0 2px var(--color-dark-primary);
+    }
+    50% {
+        transform: translateY(0) rotateX(0deg);
+        box-shadow: 
+            0 5px 15px rgba(0, 0, 0, 0.5), 
+            inset 0 0 10px rgba(255, 255, 255, 0.1), 
+            inset 0 0 0 2px var(--color-dark-primary);
+    }
+    75% {
+        transform: translateY(15px) rotateX(-5deg);
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.7), 
+            inset 0 0 15px rgba(255, 255, 255, 0.2), 
+            inset 0 0 0 2px var(--color-dark-primary);
+    }
+}

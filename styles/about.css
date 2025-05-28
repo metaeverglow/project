@@ -1,0 +1,58 @@
+/* Секция: О нас */
+.about-grid {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transform: rotateZ(-3deg);
+    transition: transform var(--transition-speed);
+    border: 3px solid var(--color-primary);
+}
+.about-image:hover {
+    transform: rotateZ(0deg) scale(1.02);
+    border-color: var(--color-secondary);
+}
+
+.about-image img {
+    border-radius: 10px;
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.about-content {
+    flex: 2;
+    background-color: var(--color-background-light);
+    padding: var(--spacing-md);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--color-medium-grey);
+}
+body.dark-mode .about-content {
+    background-color: var(--color-dark-surface);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Секция: Текстурный фон */
+.bg-dark-texture {
+    background-color: #f0f0f0;
+    background-image: url('data:image/svg+xml,%3Csvg width%3D%226%22 height%3D%226%22 viewBox%3D%220 0 6 6%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg fill%3D%22%23b0b0b0%22 fill-opacity%3D%220.1%22 fill-rule%3D%22evenodd%22%3E%3Cpath d%3D%22M5 0h1L0 6V5zm1 5v1H5z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    background-repeat: repeat;
+    transition: background-color var(--transition-speed);
+}
+body.dark-mode .bg-dark-texture {
+    background-color: var(--color-dark-surface);
+    background-image: url('data:image/svg+xml,%3Csvg width%3D%226%22 height%3D%226%22 viewBox%3D%220 0 6 6%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg fill%3D%22%23555555%22 fill-opacity%3D%220.1%22 fill-rule%3D%22evenodd%22%3E%3Cpath d%3D%22M5 0h1L0 6V5zm1 5v1H5z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+}

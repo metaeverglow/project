@@ -1,0 +1,223 @@
+/* Секция: Образовательный центр */
+.educational-hub-section {
+    background-color: var(--color-background-light);
+}
+
+body.dark-mode .educational-hub-section {
+    background-color: var(--color-dark-surface);
+}
+
+/* Сетка интерактивных карточек */
+.interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+/* Карточка */
+.interactive-card {
+    background-color: white;
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
+    overflow: hidden;
+}
+
+body.dark-mode .interactive-card {
+    background-color: var(--color-dark-background);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.interactive-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+}
+
+body.dark-mode .interactive-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Иконка карточки */
+.interactive-card .card-icon {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    background-color: var(--color-light-grey);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-speed);
+    position: relative;
+    z-index: 1;
+}
+
+body.dark-mode .interactive-card .card-icon {
+    background-color: #444;
+    color: var(--color-dark-primary);
+}
+
+.interactive-card:hover .card-icon {
+    color: white;
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+body.dark-mode .interactive-card:hover .card-icon {
+    color: var(--color-dark-background);
+    background-color: var(--color-dark-primary);
+}
+
+/* Эффект свечения */
+.interactive-card .card-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all var(--transition-speed) ease-out;
+    z-index: -1;
+    filter: blur(15px);
+}
+
+body.dark-mode .interactive-card .card-icon::before {
+    background-color: var(--color-dark-primary);
+}
+
+.interactive-card:hover .card-icon::before {
+    opacity: 0.6;
+    transform: scale(1.2);
+}
+
+/* Заголовок карточки */
+.interactive-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+body.dark-mode .interactive-card h3 {
+    color: var(--color-dark-primary);
+}
+
+/* Описание карточки */
+.interactive-card p {
+    font-size: 0.95rem;
+    color: var(--color-medium-grey);
+    margin-bottom: var(--spacing-sm);
+    flex-grow: 1;
+}
+
+body.dark-mode .interactive-card p {
+    color: var(--color-medium-grey);
+}
+
+/* Кнопка внутри карточки */
+.interactive-card .btn {
+    margin-top: auto;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+/* Адаптивность карточек */
+@media (max-width: 768px) {
+    .interactive-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--spacing-sm);
+    }
+    .interactive-card .card-icon {
+        font-size: 3rem;
+        width: 80px;
+        height: 80px;
+    }
+    .interactive-card h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .interactive-grid {
+        grid-template-columns: 1fr;
+    }
+    .interactive-card {
+        padding: var(--spacing-sm);
+    }
+    .interactive-card h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Секция: Встраивание Sketchfab */
+.sketchfab-embed-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    background-color: var(--color-background-light);
+}
+
+body.dark-mode .sketchfab-embed-wrapper {
+    background-color: var(--color-dark-surface);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.sketchfab-embed-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Подпись Sketchfab */
+.sketchfab-attribution-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 10px 0 0 0;
+    color: var(--color-medium-grey);
+    text-align: center;
+}
+
+body.dark-mode .sketchfab-attribution-text {
+    color: var(--color-medium-grey);
+}
+
+.sketchfab-attribution-text a {
+    font-weight: 500;
+    color: var(--color-primary);
+    transition: color var(--transition-speed);
+}
+
+body.dark-mode .sketchfab-attribution-text a {
+    color: var(--color-dark-primary);
+}
+
+.sketchfab-attribution-text a:hover {
+    color: var(--color-secondary);
+}
+
+body.dark-mode .sketchfab-attribution-text a:hover {
+    color: var(--color-dark-secondary);
+}

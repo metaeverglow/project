@@ -1,0 +1,245 @@
+/* Секция: Переменные (светлая и тёмная тема) */
+:root {
+    --color-primary: #8B4513;
+    --color-secondary: #FFD700;
+    --color-background-light: #F8F4E3;
+    --color-text-dark: #333333;
+    --color-light-grey: #e0e0e0;
+    --color-medium-grey: #666666;
+
+    --color-dark-background: #1A1A1A;
+    --color-dark-surface: #2C2C2C;
+    --color-dark-text-light: #E0E0E0;
+    --color-dark-primary: #DAA520;
+    --color-dark-secondary: #A0522D;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-accent: 'Great Vibes', cursive;
+
+    --spacing-lg: 80px;
+    --spacing-md: 40px;
+    --spacing-sm: 20px;
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.2);
+    --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    --transition-speed: 0.3s ease;
+}
+
+/* Секция: Темная тема */
+body.dark-mode {
+    --color-primary: var(--color-dark-primary);
+    --color-secondary: var(--color-dark-secondary);
+    --color-background-light: var(--color-dark-background);
+    --color-text-dark: var(--color-dark-text-light);
+    --color-light-grey: #444444;
+    --color-medium-grey: #b0b0b0;
+
+    background-color: var(--color-dark-background);
+    color: var(--color-text-dark);
+}
+
+/* Секция: Базовые стили и сброс */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Секция: Секции и заголовки */
+.section-padding {
+    padding: var(--spacing-lg) 0;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-secondary);
+    border-radius: 5px;
+}
+
+.section-title.text-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--color-medium-grey);
+    margin-bottom: var(--spacing-md);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Секция: Кнопки */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all var(--transition-speed);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text-dark);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+/* Секция: Темная тема — Компоненты */
+body.dark-mode .bg-dark-texture {
+    background-color: var(--color-dark-surface);
+}
+
+body.dark-mode .header {
+    background-color: var(--color-dark-surface);
+}
+
+body.dark-mode .nav-link {
+    color: var(--color-dark-text-light);
+}
+body.dark-mode .nav-link:hover {
+    color: var(--color-dark-primary);
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--color-dark-primary);
+    color: var(--color-dark-background);
+}
+body.dark-mode .btn-primary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-dark-background);
+}
+
+body.dark-mode .btn-secondary {
+    color: var(--color-dark-primary);
+    border-color: var(--color-dark-primary);
+}
+body.dark-mode .btn-secondary:hover {
+    background-color: var(--color-dark-primary);
+    color: var(--color-dark-background);
+}
+
+body.dark-mode .footer {
+    background-color: var(--color-dark-surface);
+    color: var(--color-dark-text-light);
+}
+
+body.dark-mode .exhibition-card,
+body.dark-mode .collection-item,
+body.dark-mode .visit-info,
+body.dark-mode .contact-info-block,
+body.dark-mode .contact-form-block {
+    background-color: var(--color-dark-surface);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    background-color: var(--color-dark-background);
+    border-color: var(--color-light-grey);
+    color: var(--color-dark-text-light);
+}
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+    color: var(--color-medium-grey);
+}
+
+body.dark-mode .section-title {
+    color: var(--color-dark-primary);
+}
+body.dark-mode .section-description {
+    color: var(--color-medium-grey);
+}
+body.dark-mode .read-more {
+    color: var(--color-dark-primary);
+}
+body.dark-mode .read-more:hover {
+    color: var(--color-secondary);
+}
+body.dark-mode .logo span {
+    color: var(--color-dark-primary);
+}

@@ -1,0 +1,346 @@
+/* Секция: Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--color-background-light);
+    margin: auto;
+    padding: var(--spacing-md);
+    border-radius: 10px;
+    box-shadow: var(--shadow-strong);
+    position: relative;
+    max-width: 700px;
+    width: 90%;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    border: 3px solid var(--color-primary);
+}
+
+body.dark-mode .modal-content {
+    background-color: var(--color-dark-surface);
+    border-color: var(--color-dark-primary);
+}
+
+.modal.open .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-button {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transform: rotate(90deg);
+}
+
+body.dark-mode .close-button {
+    color: var(--color-dark-primary);
+}
+
+.modal-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+body.dark-mode .modal-content h2 {
+    color: var(--color-dark-primary);
+}
+
+.modal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-light);
+}
+
+.modal-content p {
+    font-size: 1rem;
+    color: var(--color-medium-grey);
+    margin-bottom: 10px;
+}
+
+body.dark-mode .modal-content p {
+    color: var(--color-dark-text-light);
+}
+
+.modal-content .ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content .ticket-form label {
+    color: var(--color-primary);
+}
+
+.modal-content .ticket-form input,
+.modal-content .ticket-form select {
+    padding: 10px;
+    border: 1px solid var(--color-light-grey);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+}
+
+body.dark-mode .modal-content .ticket-form input,
+body.dark-mode .modal-content .ticket-form select {
+    background-color: var(--color-dark-background);
+    border-color: #555;
+    color: var(--color-dark-text-light);
+}
+
+/* Секция: Адаптивность и responsive поведение */
+@media (max-width: 992px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--color-background-light);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: var(--shadow-light);
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    body.dark-mode .nav-list {
+        background-color: var(--color-dark-surface);
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav .dark-mode-toggle {
+        order: 1;
+    }
+
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+
+    .main-title {
+        font-size: 4.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.3rem;
+    }
+
+    .hero-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .portal-frame {
+        padding: var(--spacing-md);
+    }
+
+    .about-grid {
+        flex-direction: column;
+    }
+
+    .about-image {
+        transform: rotateZ(0deg);
+    }
+
+    .visit-grid,
+    .contact-grid {
+        flex-direction: column;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-about,
+    .footer-links,
+    .footer-contact {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-links ul {
+        padding: 0;
+    }
+
+    .footer-links a,
+    .footer-contact p {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .hero-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .scroll-down a {
+        font-size: 2.5rem;
+        bottom: 20px;
+    }
+
+    .portal-frame {
+        padding: var(--spacing-sm);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none !important;
+    }
+
+    .exhibition-slider {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .collection-grid {
+        gap: var(--spacing-sm);
+    }
+
+    .modal-content {
+        padding: var(--spacing-sm);
+    }
+
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .main-title {
+        font-size: 2.8rem;
+        letter-spacing: 0;
+    }
+
+    .main-title .highlight-text-gold {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    .logo a i {
+        margin-right: 5px;
+    }
+
+    .dark-mode-toggle {
+        font-size: 1.3rem;
+        margin-left: 10px;
+    }
+}
+
+/* Секция: Контент модального окна с 3D или iframe */
+.modal-interactive-content h2 {
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+}
+
+body.dark-mode .modal-interactive-content h2 {
+    color: var(--color-dark-primary);
+}
+
+.modal-interactive-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+}
+
+body.dark-mode .modal-interactive-content p {
+    color: var(--color-dark-text-light);
+}
+
+.modal-interactive-content .btn {
+    margin-top: 20px;
+}
+
+.modal-interactive-content .small-text {
+    font-size: 0.85rem;
+    color: var(--color-medium-grey);
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .sketchfab-embed-wrapper {
+        padding-bottom: 75%;
+    }
+}

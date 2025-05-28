@@ -1,0 +1,26 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-light-grey);
+    border-radius: 5px;
+}
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+}
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--color-dark-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+}
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+}

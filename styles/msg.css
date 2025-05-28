@@ -1,0 +1,195 @@
+/* Секция: Обращение директора */
+.directors-message-section {
+    background-color: var(--color-background-light);
+    padding: var(--spacing-lg) 0;
+}
+
+body.dark-mode .directors-message-section {
+    background-color: var(--color-dark-background);
+}
+
+.message-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.message-text {
+    flex: 1 1 55%;
+    padding-right: var(--spacing-md);
+    color: var(--color-text-dark);
+    line-height: 1.7;
+}
+
+body.dark-mode .message-text {
+    color: var(--color-dark-text-light);
+}
+
+.message-text p:first-of-type {
+    margin-top: 0;
+}
+
+.message-text p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.director-quote {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--color-primary);
+    border-left: 5px solid var(--color-secondary);
+    padding-left: 20px;
+    margin: 30px 0;
+    line-height: 1.4;
+    position: relative;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px 20px 20px 25px;
+    border-radius: 8px;
+    transition: all var(--transition-speed);
+}
+
+body.dark-mode .director-quote {
+    color: var(--color-dark-primary);
+    border-color: var(--color-dark-secondary);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.director-quote::before {
+    content: '\201C';
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    color: var(--color-light-grey);
+    opacity: 0.6;
+    z-index: 0;
+}
+
+body.dark-mode .director-quote::before {
+    color: #666;
+}
+
+.director-signature {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-align: right;
+    margin-top: 30px;
+    line-height: 1.5;
+}
+
+body.dark-mode .director-signature {
+    color: var(--color-dark-primary);
+}
+
+.message-image {
+    flex: 1 1 40%;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+body.dark-mode .message-image {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.message-image:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+    box-shadow: var(--shadow-strong);
+}
+
+.message-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9) grayscale(0.2);
+    transition: filter 0.5s ease;
+}
+
+.message-image:hover img {
+    filter: brightness(1) grayscale(0);
+}
+
+.message-image .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+    transition: background 0.5s ease;
+}
+
+body.dark-mode .message-image .image-overlay {
+    background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 70%);
+}
+
+.message-image:hover .image-overlay {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+}
+
+body.dark-mode .message-image:hover .image-overlay {
+    background: radial-gradient(circle at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .message-content {
+        flex-direction: column-reverse;
+        gap: var(--spacing-sm);
+    }
+
+    .message-text,
+    .message-image {
+        flex: 1 1 100%;
+        padding-right: 0;
+    }
+
+    .message-image {
+        transform: none;
+    }
+
+    .message-image img {
+        height: 350px;
+    }
+
+    .director-quote {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .message-image img {
+        height: 280px;
+    }
+
+    .director-quote {
+        font-size: 1.4rem;
+        padding-left: 15px;
+    }
+
+    .director-quote::before {
+        font-size: 3rem;
+        top: -5px;
+        left: -5px;
+    }
+
+    .message-text p {
+        font-size: 1rem;
+    }
+
+    .director-signature {
+        font-size: 1rem;
+    }
+}

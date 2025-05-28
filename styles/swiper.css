@@ -1,0 +1,119 @@
+/* Секция: Слайдер выставок */
+.exhibition-slider {
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.exhibition-card {
+    background-color: var(--color-background-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: pointer;
+    border: 1px solid var(--color-light-grey);
+}
+
+.exhibition-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--color-secondary);
+}
+
+.exhibition-card img {
+    width: 100%;
+    height: 350px; /* Увеличено с 250px на 350px для лучшей видимости изображений */
+    object-fit: contain; /* Оставляем cover, чтобы изображение заполняло доступное пространство и не было пустых полос */
+    transition: transform 0.5s ease;
+}
+
+.exhibition-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: var(--spacing-sm);
+    color: var(--color-text-dark);
+}
+
+body.dark-mode .card-content {
+    color: var(--color-dark-text-light);
+}
+
+.card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: var(--color-medium-grey);
+    margin-bottom: 15px;
+}
+
+.read-more {
+    font-weight: 500;
+    display: inline-block;
+    color: var(--color-primary);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.read-more:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+/* Секция: Навигация и пагинация Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--color-primary) !important;
+    font-size: 1.8rem !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-speed);
+}
+
+body.dark-mode .swiper-button-next,
+body.dark-mode .swiper-button-prev {
+    color: var(--color-dark-primary) !important;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--color-secondary);
+    color: white !important;
+    transform: scale(1.1);
+}
+
+body.dark-mode .swiper-button-next:hover,
+body.dark-mode .swiper-button-prev:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-dark-background) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.2rem !important;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--color-primary) !important;
+    opacity: 0.7 !important;
+    transition: all var(--transition-speed);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--color-secondary) !important;
+    opacity: 1 !important;
+    transform: scale(1.2);
+}

@@ -1,0 +1,202 @@
+/* --- Стили для предзагрузчика страницы --- */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-bg-color); /* Используем темный фон музея */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Поверх всех остальных элементов */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out; /* Плавное исчезновение */
+}
+
+.preloader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Запрещаем взаимодействие после скрытия */
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color); /* Золотистый цвет */
+    text-align: center;
+}
+
+.preloader-icon {
+    font-size: 5em; /* Большая иконка музея */
+    margin-bottom: 20px;
+    animation: pulse-glow 2s infinite alternate; /* Анимация свечения */
+    text-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.8); /* Сильное свечение */
+}
+
+.preloader-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    color: var(--heading-color);
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* Анимация пульсации и свечения для иконки */
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5);
+    }
+    100% {
+        transform: scale(1.05);
+        text-shadow: 0 0 30px rgba(var(--primary-color-rgb), 1);
+    }
+}
+
+/* Стили SpinKit (Cube Grid) - просто переопределяем цвета, если нужно */
+.sk-cube-grid .sk-cube {
+    background-color: var(--primary-color); /* Золотистый цвет для кубиков */
+}
+
+
+/* --- Стили для нового раздела "Ключевые Факты о Музее" --- */
+
+#museum-facts {
+    background-color: var(--dark-bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.museum-facts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    min-height: 400px;
+    position: relative;
+    z-index: 1;
+    /* Убираем perspective отсюда, т.к. индивидуальные трансформации будут управляться GSAP */
+}
+
+.fact-shard {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(145deg, var(--card-bg-color), var(--dark-bg-color));
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(var(--primary-color-rgb), 0.3);
+    transform-style: preserve-3d;
+    transition: box-shadow 0.5s ease-out; /* Убрал transform, т.к. им управляет GSAP */
+
+    /* Уникальная форма "кристалла" */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.fact-shard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(var(--primary-color-rgb), 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    filter: blur(15px);
+    z-index: 1;
+}
+
+.fact-shard:hover::before {
+    opacity: 1;
+    filter: blur(8px);
+}
+
+/* GSAP будет управлять transform, но для hover-эффектов на компонентах внутри можно оставить */
+/* Убрал :hover transform отсюда, чтобы GSAP управлял основным движением */
+.fact-shard:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(var(--primary-color-rgb), 0.8);
+}
+
+
+.shard-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+    transition: transform 0.5s ease-out;
+}
+
+.shard-content i {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5);
+    transition: transform 0.3s ease;
+}
+
+.fact-shard:hover .shard-content i {
+    transform: scale(1.1) rotateZ(5deg);
+}
+
+.shard-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 8px;
+    color: var(--heading-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.shard-content .fact-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(var(--primary-color-rgb), 0.7);
+    line-height: 1;
+}
+
+.shard-content .fact-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    line-height: 1.5;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .museum-facts-grid {
+        gap: 30px;
+        margin-top: 40px;
+    }
+    .fact-shard {
+        width: 250px;
+        height: 250px;
+        padding: 25px;
+    }
+    .shard-content i {
+        font-size: 2.5em;
+    }
+    .shard-content h4 {
+        font-size: 1.6em;
+    }
+    .shard-content .fact-value {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .museum-facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

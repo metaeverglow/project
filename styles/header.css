@@ -1,0 +1,90 @@
+/* Секция: Хедер */
+.header {
+    background-color: var(--color-background-light);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-light);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Логотип */
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+}
+
+.logo a i {
+    margin-right: 10px;
+    color: var(--color-secondary);
+}
+
+.logo a span {
+    color: var(--color-primary);
+}
+
+/* Навигация */
+.nav-list {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--color-text-dark);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all var(--transition-speed);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: width var(--transition-speed);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Кнопка меню (бургер) */
+.nav-toggle {
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+    color: var(--color-primary);
+}
+
+/* Переключатель темной темы */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-primary);
+    margin-left: 20px;
+    transition: transform 0.2s ease, color var(--transition-speed);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    color: var(--color-secondary);
+}
